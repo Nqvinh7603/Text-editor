@@ -4,11 +4,18 @@
  */
 package com.texteditor.menu;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.font.TextAttribute;
+import java.util.Map;
+
 /**
  *
  * @author Admin
  */
 public class menuFrm extends javax.swing.JFrame {
+private String text;
+private static final int FONT_SIZE = 14;
 
     /**
      * Creates new form menuFrm
@@ -16,6 +23,7 @@ public class menuFrm extends javax.swing.JFrame {
     public menuFrm() {
         initComponents();
         setLocationRelativeTo(null);
+        text = txtContent.getText();
     }
 
     /**
@@ -29,6 +37,9 @@ public class menuFrm extends javax.swing.JFrame {
 
         btnGroupColor = new javax.swing.ButtonGroup();
         btnGroupFontSize = new javax.swing.ButtonGroup();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtContent = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         menuItemSave = new javax.swing.JMenuItem();
@@ -37,25 +48,35 @@ public class menuFrm extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         menuItemExit = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
-        jCheckBoxMenuItem2 = new javax.swing.JCheckBoxMenuItem();
-        jCheckBoxMenuItem3 = new javax.swing.JCheckBoxMenuItem();
+        cbMenuItemUpper = new javax.swing.JCheckBoxMenuItem();
+        cbMenuItemBold = new javax.swing.JCheckBoxMenuItem();
+        cbMenuItemUnderline = new javax.swing.JCheckBoxMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         jMenu4 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        menuItemRed = new javax.swing.JMenuItem();
+        menuItemBlue = new javax.swing.JMenuItem();
+        menuItemGreen = new javax.swing.JMenuItem();
+        menuItemBlack = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
-        jRadioButtonMenuItem2 = new javax.swing.JRadioButtonMenuItem();
-        jRadioButtonMenuItem3 = new javax.swing.JRadioButtonMenuItem();
-        jRadioButtonMenuItem4 = new javax.swing.JRadioButtonMenuItem();
-        jRadioButtonMenuItem5 = new javax.swing.JRadioButtonMenuItem();
+        rbtn150 = new javax.swing.JRadioButtonMenuItem();
+        rbtn125 = new javax.swing.JRadioButtonMenuItem();
+        rbtn100 = new javax.swing.JRadioButtonMenuItem();
+        rbtn75 = new javax.swing.JRadioButtonMenuItem();
+        rbtn25 = new javax.swing.JRadioButtonMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TEXT EDITOR");
         setResizable(false);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("TEXT EDITOR");
+
+        txtContent.setColumns(20);
+        txtContent.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txtContent.setLineWrap(true);
+        txtContent.setRows(5);
+        jScrollPane1.setViewportView(txtContent);
 
         jMenu1.setText("File");
 
@@ -72,11 +93,21 @@ public class menuFrm extends javax.swing.JFrame {
         menuItemEditText.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
         menuItemEditText.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/texteditor/images/pen-24px.png"))); // NOI18N
         menuItemEditText.setText("Edit Text");
+        menuItemEditText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemEditTextActionPerformed(evt);
+            }
+        });
         jMenu1.add(menuItemEditText);
 
         menuItemRemoveText.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
         menuItemRemoveText.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/texteditor/images/delete-24px.png"))); // NOI18N
         menuItemRemoveText.setText("Remove Text");
+        menuItemRemoveText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemRemoveTextActionPerformed(evt);
+            }
+        });
         jMenu1.add(menuItemRemoveText);
         jMenu1.add(jSeparator1);
 
@@ -94,58 +125,83 @@ public class menuFrm extends javax.swing.JFrame {
 
         jMenu2.setText("Style And Color");
 
-        jCheckBoxMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.SHIFT_DOWN_MASK));
-        jCheckBoxMenuItem1.setText("Upper");
-        jCheckBoxMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/texteditor/images/upper-text.png"))); // NOI18N
-        jMenu2.add(jCheckBoxMenuItem1);
-
-        jCheckBoxMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.SHIFT_DOWN_MASK));
-        jCheckBoxMenuItem2.setText("Bold");
-        jCheckBoxMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/texteditor/images/bold-type.png"))); // NOI18N
-        jMenu2.add(jCheckBoxMenuItem2);
-
-        jCheckBoxMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.SHIFT_DOWN_MASK));
-        jCheckBoxMenuItem3.setText("Underline");
-        jCheckBoxMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/texteditor/images/underlined-text.png"))); // NOI18N
-        jCheckBoxMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        cbMenuItemUpper.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.SHIFT_DOWN_MASK));
+        cbMenuItemUpper.setText("Upper");
+        cbMenuItemUpper.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/texteditor/images/upper-text.png"))); // NOI18N
+        cbMenuItemUpper.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBoxMenuItem3ActionPerformed(evt);
+                cbMenuItemUpperActionPerformed(evt);
             }
         });
-        jMenu2.add(jCheckBoxMenuItem3);
+        jMenu2.add(cbMenuItemUpper);
+
+        cbMenuItemBold.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.SHIFT_DOWN_MASK));
+        cbMenuItemBold.setText("Bold");
+        cbMenuItemBold.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/texteditor/images/bold-type.png"))); // NOI18N
+        cbMenuItemBold.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbMenuItemBoldActionPerformed(evt);
+            }
+        });
+        jMenu2.add(cbMenuItemBold);
+
+        cbMenuItemUnderline.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.SHIFT_DOWN_MASK));
+        cbMenuItemUnderline.setText("Underline");
+        cbMenuItemUnderline.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/texteditor/images/underlined-text.png"))); // NOI18N
+        cbMenuItemUnderline.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbMenuItemUnderlineActionPerformed(evt);
+            }
+        });
+        jMenu2.add(cbMenuItemUnderline);
         jMenu2.add(jSeparator2);
 
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/texteditor/images/dropper-16px.png"))); // NOI18N
         jMenu4.setText("Color");
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/texteditor/images/red-16px.png"))); // NOI18N
-        jMenuItem1.setText("RED");
-        btnGroupColor.add(jMenuItem1);
-        jMenu4.add(jMenuItem1);
-
-        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/texteditor/images/blue-16px.png"))); // NOI18N
-        jMenuItem2.setText("BLUE");
-        btnGroupColor.add(jMenuItem2);
-        jMenu4.add(jMenuItem2);
-
-        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/texteditor/images/green-16px.png"))); // NOI18N
-        jMenuItem3.setText("GREEN");
-        btnGroupColor.add(jMenuItem3);
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        menuItemRed.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        menuItemRed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/texteditor/images/red-16px.png"))); // NOI18N
+        menuItemRed.setText("RED");
+        btnGroupColor.add(menuItemRed);
+        menuItemRed.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                menuItemRedActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem3);
+        jMenu4.add(menuItemRed);
 
-        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_K, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/texteditor/images/black-16px.png"))); // NOI18N
-        jMenuItem4.setText("BLACK");
-        btnGroupColor.add(jMenuItem4);
-        jMenu4.add(jMenuItem4);
+        menuItemBlue.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        menuItemBlue.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/texteditor/images/blue-16px.png"))); // NOI18N
+        menuItemBlue.setText("BLUE");
+        btnGroupColor.add(menuItemBlue);
+        menuItemBlue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemBlueActionPerformed(evt);
+            }
+        });
+        jMenu4.add(menuItemBlue);
+
+        menuItemGreen.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        menuItemGreen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/texteditor/images/green-16px.png"))); // NOI18N
+        menuItemGreen.setText("GREEN");
+        btnGroupColor.add(menuItemGreen);
+        menuItemGreen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemGreenActionPerformed(evt);
+            }
+        });
+        jMenu4.add(menuItemGreen);
+
+        menuItemBlack.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_K, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        menuItemBlack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/texteditor/images/black-16px.png"))); // NOI18N
+        menuItemBlack.setText("BLACK");
+        btnGroupColor.add(menuItemBlack);
+        menuItemBlack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemBlackActionPerformed(evt);
+            }
+        });
+        jMenu4.add(menuItemBlack);
 
         jMenu2.add(jMenu4);
 
@@ -153,46 +209,56 @@ public class menuFrm extends javax.swing.JFrame {
 
         jMenu3.setText("Font Size");
 
-        jRadioButtonMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_5, java.awt.event.InputEvent.ALT_DOWN_MASK));
-        btnGroupFontSize.add(jRadioButtonMenuItem1);
-        jRadioButtonMenuItem1.setText("150%");
-        jMenu3.add(jRadioButtonMenuItem1);
-
-        jRadioButtonMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_4, java.awt.event.InputEvent.ALT_DOWN_MASK));
-        btnGroupFontSize.add(jRadioButtonMenuItem2);
-        jRadioButtonMenuItem2.setText("125%");
-        jRadioButtonMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        rbtn150.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_5, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        btnGroupFontSize.add(rbtn150);
+        rbtn150.setText("150%");
+        rbtn150.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonMenuItem2ActionPerformed(evt);
+                rbtn150ActionPerformed(evt);
             }
         });
-        jMenu3.add(jRadioButtonMenuItem2);
+        jMenu3.add(rbtn150);
 
-        jRadioButtonMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_3, java.awt.event.InputEvent.ALT_DOWN_MASK));
-        btnGroupFontSize.add(jRadioButtonMenuItem3);
-        jRadioButtonMenuItem3.setSelected(true);
-        jRadioButtonMenuItem3.setText("100%");
-        jMenu3.add(jRadioButtonMenuItem3);
-
-        jRadioButtonMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_2, java.awt.event.InputEvent.ALT_DOWN_MASK));
-        btnGroupFontSize.add(jRadioButtonMenuItem4);
-        jRadioButtonMenuItem4.setText("75%");
-        jRadioButtonMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        rbtn125.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_4, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        btnGroupFontSize.add(rbtn125);
+        rbtn125.setText("125%");
+        rbtn125.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonMenuItem4ActionPerformed(evt);
+                rbtn125ActionPerformed(evt);
             }
         });
-        jMenu3.add(jRadioButtonMenuItem4);
+        jMenu3.add(rbtn125);
 
-        jRadioButtonMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_1, java.awt.event.InputEvent.ALT_DOWN_MASK));
-        btnGroupFontSize.add(jRadioButtonMenuItem5);
-        jRadioButtonMenuItem5.setText("25%");
-        jRadioButtonMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        rbtn100.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_3, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        btnGroupFontSize.add(rbtn100);
+        rbtn100.setSelected(true);
+        rbtn100.setText("100%");
+        rbtn100.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonMenuItem5ActionPerformed(evt);
+                rbtn100ActionPerformed(evt);
             }
         });
-        jMenu3.add(jRadioButtonMenuItem5);
+        jMenu3.add(rbtn100);
+
+        rbtn75.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_2, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        btnGroupFontSize.add(rbtn75);
+        rbtn75.setText("75%");
+        rbtn75.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtn75ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(rbtn75);
+
+        rbtn25.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_1, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        btnGroupFontSize.add(rbtn25);
+        rbtn25.setText("25%");
+        rbtn25.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtn25ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(rbtn25);
 
         jMenuBar1.add(jMenu3);
 
@@ -202,11 +268,19 @@ public class menuFrm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 682, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE))
         );
 
         pack();
@@ -214,6 +288,9 @@ public class menuFrm extends javax.swing.JFrame {
 
     private void menuItemSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemSaveActionPerformed
         // TODO add your handling code here:
+        text = txtContent.getText();
+        txtContent.setEditable(false);
+        
     }//GEN-LAST:event_menuItemSaveActionPerformed
 
     private void menuItemExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemExitActionPerformed
@@ -221,25 +298,104 @@ public class menuFrm extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_menuItemExitActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void menuItemGreenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemGreenActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+        txtContent.setForeground(Color.green);
+    }//GEN-LAST:event_menuItemGreenActionPerformed
 
-    private void jCheckBoxMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem3ActionPerformed
+    private void cbMenuItemUnderlineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMenuItemUnderlineActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBoxMenuItem3ActionPerformed
+        if(cbMenuItemUnderline.isSelected()){
+            Font font = txtContent.getFont();
+            Map att = font.getAttributes();
+            att.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
+            txtContent.setFont(font.deriveFont(att));
+        }else{
+            Font font = txtContent.getFont();
+            Map att = font.getAttributes();
+            att.put(TextAttribute.UNDERLINE, -1);
+            txtContent.setFont(font.deriveFont(att));
+        }
+    }//GEN-LAST:event_cbMenuItemUnderlineActionPerformed
 
-    private void jRadioButtonMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem2ActionPerformed
+    private void rbtn125ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn125ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButtonMenuItem2ActionPerformed
+        if(rbtn125.isSelected()){
+            txtContent.setFont(new Font(txtContent.getFont().getName(), txtContent.getFont().getStyle(), (int) ((int) FONT_SIZE*1.25)));
+        }
+    }//GEN-LAST:event_rbtn125ActionPerformed
 
-    private void jRadioButtonMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem4ActionPerformed
+    private void rbtn75ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn75ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButtonMenuItem4ActionPerformed
+        if(rbtn75.isSelected()){
+            txtContent.setFont(new Font(txtContent.getFont().getName(), txtContent.getFont().getStyle(), (int) ((int) FONT_SIZE*0.75)));
+        }
+    }//GEN-LAST:event_rbtn75ActionPerformed
 
-    private void jRadioButtonMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem5ActionPerformed
+    private void rbtn25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn25ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButtonMenuItem5ActionPerformed
+        if(rbtn25.isSelected()){
+            txtContent.setFont(new Font(txtContent.getFont().getName(), txtContent.getFont().getStyle(), (int) ((int) FONT_SIZE*0.25)));
+        }
+    }//GEN-LAST:event_rbtn25ActionPerformed
+
+    private void menuItemEditTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemEditTextActionPerformed
+        // TODO add your handling code here:
+        txtContent.setEditable(true);
+    }//GEN-LAST:event_menuItemEditTextActionPerformed
+
+    private void menuItemRemoveTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRemoveTextActionPerformed
+        // TODO add your handling code here:
+        text = "";
+        txtContent.setText(text);
+    }//GEN-LAST:event_menuItemRemoveTextActionPerformed
+
+    private void cbMenuItemUpperActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMenuItemUpperActionPerformed
+        // TODO add your h
+        if(cbMenuItemUpper.isSelected()){
+            txtContent.setText(text.toUpperCase());
+        }else{
+            txtContent.setText(text.toLowerCase());
+        }
+    }//GEN-LAST:event_cbMenuItemUpperActionPerformed
+
+    private void cbMenuItemBoldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMenuItemBoldActionPerformed
+        // TODO add your handling code here:
+        if(cbMenuItemBold.isSelected()){
+            txtContent.setFont(new Font(txtContent.getFont().getName(), Font.BOLD,FONT_SIZE ));
+        }else{
+            txtContent.setFont(new Font(txtContent.getFont().getName(), Font.PLAIN,FONT_SIZE ));
+        }
+    }//GEN-LAST:event_cbMenuItemBoldActionPerformed
+
+    private void menuItemRedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRedActionPerformed
+        // TODO add your handling code here:
+        txtContent.setForeground(Color.red);
+    }//GEN-LAST:event_menuItemRedActionPerformed
+
+    private void menuItemBlueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemBlueActionPerformed
+        // TODO add your handling code here:
+        txtContent.setForeground(Color.blue);
+    }//GEN-LAST:event_menuItemBlueActionPerformed
+
+    private void menuItemBlackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemBlackActionPerformed
+        // TODO add your handling code here:
+        txtContent.setForeground(Color.black);
+    }//GEN-LAST:event_menuItemBlackActionPerformed
+
+    private void rbtn150ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn150ActionPerformed
+        // TODO add your handling code here:
+        if(rbtn150.isSelected()){
+            txtContent.setFont(new Font(txtContent.getFont().getName(), txtContent.getFont().getStyle(), (int) ((int) FONT_SIZE*1.5)));
+        }
+    }//GEN-LAST:event_rbtn150ActionPerformed
+
+    private void rbtn100ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn100ActionPerformed
+        // TODO add your handling code here:
+        if(rbtn100.isSelected()){
+            txtContent.setFont(new Font(txtContent.getFont().getName(), txtContent.getFont().getStyle(), (int) ((int) FONT_SIZE*1)));
+        }
+    }//GEN-LAST:event_rbtn100ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -279,28 +435,31 @@ public class menuFrm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup btnGroupColor;
     private javax.swing.ButtonGroup btnGroupFontSize;
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem2;
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem3;
+    private javax.swing.JCheckBoxMenuItem cbMenuItemBold;
+    private javax.swing.JCheckBoxMenuItem cbMenuItemUnderline;
+    private javax.swing.JCheckBoxMenuItem cbMenuItemUpper;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
-    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem2;
-    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem3;
-    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem4;
-    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem5;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JMenuItem menuItemBlack;
+    private javax.swing.JMenuItem menuItemBlue;
     private javax.swing.JMenuItem menuItemEditText;
     private javax.swing.JMenuItem menuItemExit;
+    private javax.swing.JMenuItem menuItemGreen;
+    private javax.swing.JMenuItem menuItemRed;
     private javax.swing.JMenuItem menuItemRemoveText;
     private javax.swing.JMenuItem menuItemSave;
+    private javax.swing.JRadioButtonMenuItem rbtn100;
+    private javax.swing.JRadioButtonMenuItem rbtn125;
+    private javax.swing.JRadioButtonMenuItem rbtn150;
+    private javax.swing.JRadioButtonMenuItem rbtn25;
+    private javax.swing.JRadioButtonMenuItem rbtn75;
+    private javax.swing.JTextArea txtContent;
     // End of variables declaration//GEN-END:variables
 }
